@@ -1,0 +1,11 @@
+<taglib>
+    <tlib-version>1.0</tlib-version>
+    <jsp-version>2.0</jsp-version>
+    <short-name>Example TLD</short-name>
+    <uri>myTag</uri>
+    <tag>
+        <name>userInfo</name>
+        <tag-class>com.bosssoft.hr.train.chp2.controller.UserTag</tag-class>
+        <body-content>empty</body-content>
+    </tag>
+</taglib>

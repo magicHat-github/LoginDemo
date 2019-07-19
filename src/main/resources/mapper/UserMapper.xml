@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+    <mapper namespace="com.bosssoft.hr.train.chp2.dao.UserDao">
+
+        <select id="getUserAllList" resultType="com.bosssoft.hr.train.chp2.pojo.User">
+            select * from t_user
+        </select>
+
+    <select id="queryUserByNamePassword" resultType="com.bosssoft.hr.train.chp2.pojo.User">
+        select * from t_user where name = #{username} and password = #{password}
+    </select>
+
+    <select id="getUserByPage" resultType="com.bosssoft.hr.train.chp2.pojo.User">
+        select * from t_user limit #{start},#{size}
+    </select>
+
+    <insert id="addUserBatch">
+        insert into t_user (code, name, password, sex, birthday) values
+        <foreach collection="users" separator="," item="user">
+            (#{user.code},#{user.name},#{user.password},#{user.sex},#{user.birthday})
+        </foreach>
+    </insert>
+
+    <insert id="addUserBakBatch">
+        insert into t_user_bak (id, code, name, password, sex, birthday)values
+        <foreach collection="users" separator="," item="user">
+            (#{user.id},#{user.code},#{user.name},#{user.password},#{user.sex},#{user.birthday})
+        </foreach>
+    </insert>
+
+    <insert id="addUser" parameterType="com.bosssoft.hr.train.chp2.pojo.User">
+        insert into t_user (code, name, password, sex, birthday) VALUE (#{user.code},#{user.name},#{user.password},#{user.sex},#{user.birthday})
+    </insert>
+
+    </mapper>
