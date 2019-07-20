@@ -33,9 +33,11 @@ public class LoginController extends HttpServlet {
             String password = request.getParameter("password");
             String savePassword = request.getParameter("savePassword");
             String isAjax = request.getParameter("ajax");
+
             UserService userService = new UserService();
             User user = userService.checkUserLogin(username, password);
             if (isAjax == null) {
+                // 这里处理非Ajax请求
                 if (user == null) {
                     request.setAttribute(Constants.REQUEST_MESSAGE, "用户名或者密码错误");
                     logger.info("POST访问：/login，请求到登录控制层，登录失败，即将跳转至登录页面");

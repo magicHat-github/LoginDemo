@@ -72,16 +72,34 @@
 <script src="${pageContext.request.contextPath}/js/app.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
+    /**
+     * 判断节点是否有样式
+     * @param elem 节点
+     * @param cls 样式
+     * @returns {boolean}
+     */
     function hasClass(elem, cls) {
         cls = cls || '';
         if (cls.replace(/\s/g, '').length === 0) return false;
         return new RegExp(' ' + cls + ' ').test(' ' + elem.className + ' ');
     }
+
+    /**
+     * 给节点添加样式
+     * @param ele 节点
+     * @param cls 样式
+     */
     function addClass(ele, cls) {
         if (!hasClass(ele, cls)) {
             ele.className = ele.className === '' ? cls : ele.className + ' ' + cls;
         }
     }
+
+    /**
+     * 删除样式
+     * @param ele 节点
+     * @param cls 样式
+     */
     function removeClass(ele, cls) {
         if (hasClass(ele, cls)) {
             var newClass = ' ' + ele.className.replace(/[\t\r\n]/g, '') + ' ';
@@ -91,6 +109,10 @@
             ele.className = newClass.replace(/^\s+|\s+$/g, '');
         }
     }
+
+    /**
+     * 响应提交按钮，发送Ajax请求
+     */
     document.querySelector(".login-button").onclick = function(){
         var username = $("#username").val();
         var password = $("#password").val();

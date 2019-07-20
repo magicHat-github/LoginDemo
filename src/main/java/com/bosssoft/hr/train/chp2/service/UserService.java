@@ -211,11 +211,7 @@ public class UserService {
                     users.add(user);
                 }
             }
-        } catch (DocumentException e) {
-            logger.error(e.getMessage());
-        } catch (ParseException e) {
-            logger.error(e.getMessage());
-        } catch (Exception e){
+        } catch (DocumentException | ParseException e) {
             logger.error(e.getMessage());
         }
         return users;

@@ -24,7 +24,6 @@ public class ContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         ServletContext application = servletContextEvent.getServletContext();
-        // 有待开发在线人数和登录用户的区分
         application.setAttribute(Constants.USER_LOGIN_ONLINE_COUNT,0);
         application.setAttribute(Constants.USER_COUNT,0);
     }
