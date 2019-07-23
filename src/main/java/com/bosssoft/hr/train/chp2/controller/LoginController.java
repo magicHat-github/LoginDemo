@@ -3,6 +3,7 @@ package com.bosssoft.hr.train.chp2.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.bosssoft.hr.train.chp2.pojo.User;
 import com.bosssoft.hr.train.chp2.service.UserService;
+import com.bosssoft.hr.train.chp2.service.impl.UserServiceImpl;
 import com.bosssoft.hr.train.util.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 /**
  * 登录控制层
@@ -35,7 +37,7 @@ public class LoginController extends HttpServlet {
             String savePassword = request.getParameter("savePassword");
             String isAjax = request.getParameter("ajax");
 
-            UserService userService = new UserService();
+            UserService userService = new UserServiceImpl();
             User user = userService.checkUserLogin(username, password);
             if (isAjax == null) {
                 // 这里处理非Ajax请求
@@ -58,7 +60,7 @@ public class LoginController extends HttpServlet {
                 JSONObject jsonObject = new JSONObject();
                 if (user == null) {
                     logger.info("POST-Ajax访问：/login，请求到登录控制层，登录失败！！");
-                    String message = new String("用户名或者密码错误!".getBytes(), "UTF-8");
+                    String message = new String("用户名或者密码错误!".getBytes(), StandardCharsets.UTF_8);
                     jsonObject.put("status", false);
                     jsonObject.put("message", message);
                 } else {

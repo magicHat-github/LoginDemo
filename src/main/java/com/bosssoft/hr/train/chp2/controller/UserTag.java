@@ -5,7 +5,6 @@ import com.bosssoft.hr.train.util.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
@@ -20,7 +19,7 @@ public class UserTag extends SimpleTagSupport {
     private static Logger logger = LoggerFactory.getLogger(UserTag.class);
 
     @Override
-    public void doTag() throws JspException, IOException {
+    public void doTag() throws IOException {
         logger.info("自定义标签处理器，正在处理信息...");
         PageContext pageContext = (PageContext) getJspContext();
         User user = (User) pageContext.getSession().getAttribute(Constants.SESSION_USER);

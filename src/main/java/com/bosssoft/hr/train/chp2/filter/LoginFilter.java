@@ -19,7 +19,7 @@ public class LoginFilter implements Filter {
     private static Logger logger = LoggerFactory.getLogger(LoginFilter.class);
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
 
     }
 
@@ -31,15 +31,15 @@ public class LoginFilter implements Filter {
         try {
             HttpSession session = request.getSession();
             if (session.getAttribute(Constants.SESSION_USER) == null) {
-                String goURL = request.getServletPath();
+                String goUrl = request.getServletPath();
                 if (request.getQueryString() != null) {
-                    goURL += "?" + request.getQueryString();
+                    goUrl += "?" + request.getQueryString();
                 }
                 String lastStr = null;
-                if (goURL.contains(Constants.POINT)){
-                    lastStr = goURL.substring(goURL.lastIndexOf(Constants.POINT));
+                if (goUrl.contains(Constants.POINT)){
+                    lastStr = goUrl.substring(goUrl.lastIndexOf(Constants.POINT));
                 }
-                if (Constants.URL_LOGIN.equals(goURL) ||
+                if (Constants.URL_LOGIN.equals(goUrl) ||
                         Constants.LAST_STR_JS.equals(lastStr) ||
                         Constants.LAST_STR_CSS.equals(lastStr) ||
                         Constants.LAST_STR_ICO.equals(lastStr) ||
@@ -49,9 +49,9 @@ public class LoginFilter implements Filter {
                     logger.info("登录拦截器，登录或者静态文件的请求，放行！");
                     filterChain.doFilter(request, response);
                 } else {
-                    session.setAttribute(Constants.SESSION_GO_URL, goURL);
+                    session.setAttribute(Constants.SESSION_GO_URL, goUrl);
                     request.setAttribute(Constants.REQUEST_MESSAGE, "请先登录！");
-                    logger.info("登录拦截器，非法请求，请求地址为：" + goURL);
+                    logger.info("登录拦截器，非法请求，请求地址为：" + goUrl);
                     request.getRequestDispatcher(Constants.PAGE_LOGIN).forward(request, response);
                 }
             } else {
