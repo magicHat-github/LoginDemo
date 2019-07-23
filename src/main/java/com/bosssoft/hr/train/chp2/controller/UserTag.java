@@ -2,7 +2,8 @@ package com.bosssoft.hr.train.chp2.controller;
 
 import com.bosssoft.hr.train.chp2.pojo.User;
 import com.bosssoft.hr.train.util.Constants;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
@@ -16,7 +17,7 @@ import java.io.IOException;
  */
 public class UserTag extends SimpleTagSupport {
 
-    private static Logger logger = Logger.getLogger(UserTag.class);
+    private static Logger logger = LoggerFactory.getLogger(UserTag.class);
 
     @Override
     public void doTag() throws JspException, IOException {

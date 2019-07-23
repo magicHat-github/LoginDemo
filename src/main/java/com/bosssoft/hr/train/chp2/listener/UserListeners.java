@@ -1,7 +1,8 @@
 package com.bosssoft.hr.train.chp2.listener;
 
 import com.bosssoft.hr.train.util.Constants;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpSessionListener;
  */
 public class UserListeners implements HttpSessionListener {
 
-    private static Logger logger = Logger.getLogger(UserListeners.class);
+    private static Logger logger = LoggerFactory.getLogger(UserListeners.class);
 
     @Override
     public void sessionCreated(HttpSessionEvent sessionEvent) {

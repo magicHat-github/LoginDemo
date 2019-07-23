@@ -3,7 +3,8 @@ package com.bosssoft.hr.train.chp2;
 import com.bosssoft.hr.train.chp2.pojo.User;
 import com.bosssoft.hr.train.chp2.service.UserService;
 import com.bosssoft.hr.train.util.Constants;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
  * @author likang
  */
 public class Test {
-    private static Logger logger = Logger.getLogger(Test.class);
+    private static Logger logger = LoggerFactory.getLogger(Test.class);
 
     public static void main(String[] args) {
         logger.info("---------------------- 开始 ----------------------");

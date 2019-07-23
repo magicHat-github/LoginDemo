@@ -1,7 +1,8 @@
 package com.bosssoft.hr.train.chp2.filter;
 
 import com.bosssoft.hr.train.util.Constants;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +16,7 @@ import java.io.IOException;
  */
 public class LoginFilter implements Filter {
 
-    private static Logger logger = Logger.getLogger(LoginFilter.class);
+    private static Logger logger = LoggerFactory.getLogger(LoginFilter.class);
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

@@ -1,7 +1,8 @@
 package com.bosssoft.hr.train.chp2.controller;
 
 import com.bosssoft.hr.train.util.Constants;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,7 +17,7 @@ import java.io.IOException;
  */
 public class OtherController extends HttpServlet {
 
-    private static Logger logger = Logger.getLogger(OtherController.class);
+    private static Logger logger = LoggerFactory.getLogger(OtherController.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
