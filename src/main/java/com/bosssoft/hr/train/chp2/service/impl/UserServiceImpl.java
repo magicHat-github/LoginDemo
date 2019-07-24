@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
         try (SqlSession sqlSession = MybatisUtil.getSqlSessionFactory().openSession()) {
             List<User> userList = getUserList(insertLength);
             UserDao userDao = sqlSession.getMapper(UserDao.class);
-            Integer number = userDao.addUserBatch(userList);
+            Integer number = userDao.saveBatch(userList);
             logger.info("需插入数据大小：" + userList.size() + " --实际插入数据大小：" + number);
             if (number.equals(userList.size())) {
                 sqlSession.commit();
@@ -106,7 +106,7 @@ public class UserServiceImpl implements UserService {
                 Integer start = 0;
                 int length = number % size == 0 ? (number / size) : (number / size + 1);
                 for (int i = 0; i < length; i++) {
-                    list.addAll(userDao.getUserByPage(start, size));
+                    list.addAll(userDao.queryByPage(start, size));
                     start += size;
                 }
             } catch (Exception e) {
@@ -228,7 +228,7 @@ public class UserServiceImpl implements UserService {
         try (SqlSession sqlSession = MybatisUtil.getSqlSessionFactory().openSession()) {
             if (users.size() > 0) {
                 UserDao userDao = sqlSession.getMapper(UserDao.class);
-                Integer number = userDao.addUserBakBatch(users);
+                Integer number = userDao.saveBatchToBak(users);
                 logger.info("需插入数据大小：" + users.size() + " --实际插入数据大小：" + number);
                 sqlSession.commit();
                 success = true;
@@ -287,7 +287,7 @@ public class UserServiceImpl implements UserService {
         }
         try (SqlSession sqlSession = MybatisUtil.getSqlSessionFactory().openSession()) {
             UserDao userDao = sqlSession.getMapper(UserDao.class);
-            List<User> users = userDao.queryUserByNamePassword(username, password);
+            List<User> users = userDao.queryByNamePassword(username, password);
             if (users != null && users.size() > 0) {
                 user = users.get(0);
                 user.setPassword("");
